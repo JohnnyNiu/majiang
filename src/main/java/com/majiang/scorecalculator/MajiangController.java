@@ -1,7 +1,8 @@
 package com.majiang.scorecalculator;
 
 import com.majiang.scorecalculator.model.FanItem;
-import com.majiang.scorecalculator.model.dto.WinningDto;
+import com.majiang.scorecalculator.model.dto.PaymentDto;
+import com.majiang.scorecalculator.model.dto.WinningDataDto;
 import com.majiang.scorecalculator.service.Calculator;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,9 @@ public class MajiangController {
 
     @RequestMapping(value = "/jifan",
             method = RequestMethod.POST)
-    public List jifan(@RequestBody WinningDto win) {
+    public PaymentDto jifan(@RequestBody WinningDataDto win) {
         Calculator calculator = new Calculator(win.getFanItems(), win.getWin(), win.getMenItems());
-        return calculator.getPaymentDetail() ;
+        return new PaymentDto(calculator.getPaymentDetail()) ;
     }
 
     @Deprecated

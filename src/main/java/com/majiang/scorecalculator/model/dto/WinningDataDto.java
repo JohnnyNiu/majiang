@@ -9,15 +9,15 @@ import java.util.List;
 /**
  * Created by xiaomingniu on 31/10/15.
  */
-public class WinningDto {
+public class WinningDataDto {
     private List<FanItem> fanItems;
     private WinType win;
     private MenItems menItems;
 
-    public WinningDto() {
+    public WinningDataDto() {
     }
 
-    public WinningDto(List<FanItem> fanItems, WinType win, MenItems menItems) {
+    public WinningDataDto(List<FanItem> fanItems, WinType win, MenItems menItems) {
         this.fanItems = fanItems;
         this.win = win;
         this.menItems = menItems;
