@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.majiang.scorecalculator.model.FanItemType.*;
 import static com.majiang.scorecalculator.model.MenItem.*;
-import static com.majiang.scorecalculator.model.WinType.*;
 import static java.lang.Math.*;
 
 /**
@@ -50,24 +48,6 @@ public class Calculator {
         this.menItems.add(item);
     }
 
-    @Deprecated
-    public int getPayment() {
-        switch (win) {
-            case DIAN:
-                return getPayment_Dian();
-            case DIAN_ZHUANG:
-                return getPaymentDianZhuang();
-            case ZHUANG_DIAN:
-                return getPayment_ZhuangDian();
-            case ZI_MO:
-                return 2 * calcPoints(getTotalFan());
-            case ZHUANG_ZI_MO:
-                return 4 * calcPoints(getTotalFan());
-            default:
-                throw new IllegalArgumentException("Win type is not defined:" + win);
-        }
-    }
-
     public List getPaymentDetail() {
         int basePoint = calcPoints(getTotalFan());
 
@@ -100,39 +80,6 @@ public class Calculator {
             default:
                 throw new IllegalArgumentException("Win type is not defined:" + win);
         }
-    }
-
-    private int getPayment_Dian() {
-        // 2+2+1+闷点＊2+ 庄闷＊2 ＋闷＊1
-        return calcPoints(getTotalFan()) * (2 + 2 + 1
-                + getMenCount(MEN_DIAN) * 2
-                + getMenCount(MEN_ZHUANG) * 2
-                + getMenCount(MEN_PU_TONG) * 1
-                );
-    }
-
-    private int getPaymentDianZhuang() {
-        if(getMenCount(MEN_ZHUANG)>0) {
-            throw new IllegalArgumentException("Dian zhuang only accept mendian, not accept men zhuang");
-        }
-
-        // 4+1+1+闷点＊4 ＋闷＊1
-        return calcPoints(getTotalFan()) * (4 + 1 + 1
-                + getMenCount(MEN_DIAN) * 4
-                + getMenCount(MEN_PU_TONG) * 1
-        );
-    }
-
-    private int getPayment_ZhuangDian() {
-        if(getMenCount(MEN_ZHUANG)>0) {
-            throw new IllegalArgumentException("ZhuangDian only accept mendian, not accept men zhuang");
-        }
-
-        // 4+2+2+闷点＊4+ 闷＊2
-        return calcPoints(getTotalFan()) * (4 + 2 + 2
-                + getMenCount(MEN_DIAN) * 4
-                + getMenCount(MEN_PU_TONG) * 2
-        );
     }
 
     private int calcPoints(int fan) {

@@ -27,10 +27,6 @@ public class CalculatorTest {
         c.addFan(new FanItem(XUAN_FENG_GANG, 1));
         c.addFan(new FanItem(PIAO,1));
         c.addMenItem(MEN_ZHUANG);
-        System.out.println(c.getPayment());
-        c.getPaymentDetail().stream().forEach(p -> {
-            System.out.print(p + " ,");
-        });
         //base 6   zimo 1 menzhuang 2  --> 9/7/7
         assertEquals(c.getPaymentDetail().get(0), 512);
         assertEquals(c.getPaymentDetail().get(1), 128);
