@@ -1,15 +1,11 @@
-package com.majiang.model;
+package com.majiang.wechat.model;
 
 import com.majiang.scorecalculator.model.FanItem;
 import com.majiang.scorecalculator.model.FanItemType;
 import junit.framework.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import static org.mockito.Mockito.when;
 
 /**
  * Created by xiaomingniu on 28/10/15.

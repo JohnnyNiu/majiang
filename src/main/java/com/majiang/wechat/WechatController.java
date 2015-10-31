@@ -1,6 +1,6 @@
-package com.majiang.controller;
+package com.majiang.wechat;
 
-import com.majiang.model.WechatRequest;
+import com.majiang.wechat.model.WechatRequest;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
