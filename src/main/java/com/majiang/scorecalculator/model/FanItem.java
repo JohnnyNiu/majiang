@@ -25,7 +25,10 @@ public class  FanItem {
 
     public int getFanValue(){
         if(fanItemType.fixed) {
-            return fanItemType.fanValue;
+            if(getNumber()>0)
+                return fanItemType.fanValue;
+            else
+                return 0;
         } else {
             return fanItemType.fanValue * number;
         }

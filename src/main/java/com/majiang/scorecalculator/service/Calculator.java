@@ -74,7 +74,7 @@ public class Calculator {
                         2 * basePoint * (getMenCount(MEN_PU_TONG)==2?2:1));
             case ZHUANG_ZI_MO:
                 //putong, putong, putong
-                return Arrays.asList(4* (getMenCount(MEN_PU_TONG)>=1?2:1),
+                return Arrays.asList(4* basePoint * (getMenCount(MEN_PU_TONG)>=1?2:1),
                         4 * basePoint * (getMenCount(MEN_PU_TONG)>=2?2:1),
                         4 * basePoint * (getMenCount(MEN_PU_TONG)==3?2:1));
             default:

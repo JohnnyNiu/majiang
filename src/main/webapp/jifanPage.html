@@ -1,10 +1,53 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" ng-app="jifanCalc">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>赢钱</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="jifanCalc.js"></script>
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'" />
+
+<div class="container" ng-controller="jifanCalcCtrl">
+    <h1>算番</h1>
+    <div class="row">
+            <table class="table">
+                <tr ng-repeat="i in [0,1,2]">
+                    <td class="col-sm-3" ng-repeat="type in fanItemTypes" ng-show="$index<4*(i+1) && $index >=4*i">
+                        <button class="btn-lg btn-block" ng-click="changeFanItem(type.id, 1); count = count+1" ng-init="count=0">{{type.label}} [{{count}}]</button>
+                    </td>
+                </tr>
+            </table>
+        <hr>
+
+        <h1>和牌</h1>
+        <table class="table">
+            <tr>
+                <td class="col-sm-2" ng-repeat="winType in winTypes track by $index">
+                    <input type="button" class="btn-lg btn-block" value="{{winType.label}}" ng-click="changeWinType(winType)"/>
+                </td>
+            </tr>
+        </table>
+
+        <h1>闷</h1>
+        <table class="table">
+            <tr>
+                <td class="col-sm-2" ng-repeat="item in menItems track by $index" ><input type="button" class="btn-lg btn-block" value="{{item.label}}" /></td>
+            </tr>
+        </table>
+
+        <input type="button" class="btn-lg btn-primary" value="计算" ng-click="submit()"/>
+        <input type="button" class="btn-lg btn-primary" value="清零" ng-click="reset()"/>
+
+        <h1>计算结果</h1>
+        <p>三家各拿： <span>{{result.payments[0]}}</span>, <span>{{result.payments[1]}}</span>, <span>{{result.payments[2]}}</span></p>
+        <p>总共： <span>{{result.totalPayment}}</span></p>
+    </div>
+</div>
+
 </body>
 </html>
