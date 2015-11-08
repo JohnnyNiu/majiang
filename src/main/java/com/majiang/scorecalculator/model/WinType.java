@@ -7,10 +7,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum WinType {
-    ZI_MO("非庄 自摸"),
     DIAN_ZHUANG("点庄"),
     ZHUANG_DIAN("庄点"),
-    DIAN("点和被点都不是庄"),
+    DIAN("点(非庄)"),
+    ZI_MO("自摸(非庄)"),
     ZHUANG_ZI_MO("庄自摸");
 
     private String label;
