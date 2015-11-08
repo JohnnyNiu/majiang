@@ -59,12 +59,12 @@ public class Calculator {
                         basePoint * (haveMen(MEN_PU_TONG)?2:1));
             case DIAN_ZHUANG:
                 //dian, putong, putong
-                return  Arrays.asList(4 * basePoint* basePoint * (haveMen(MEN_DIAN)?2:1),
+                return  Arrays.asList(4 * basePoint * (haveMen(MEN_DIAN)?2:1),
                         2 * basePoint * (haveMen(MEN_PU_TONG)?2:1),
                         2 * basePoint * (getMenCount(MEN_PU_TONG)==2?2:1));
             case ZHUANG_DIAN:
                 //dian, putong, putong
-                return  Arrays.asList(4 * basePoint* basePoint * (haveMen(MEN_DIAN)?2:1),
+                return  Arrays.asList(4 * basePoint * (haveMen(MEN_DIAN)?2:1),
                         basePoint * (haveMen(MEN_PU_TONG)?2:1),
                         basePoint * (getMenCount(MEN_PU_TONG)==2?2:1));
             case ZI_MO:
