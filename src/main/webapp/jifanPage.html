@@ -4,6 +4,7 @@
     <title>赢钱</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -16,9 +17,13 @@
     <h1>算番</h1>
     <div class="row">
             <table class="table">
-                <tr ng-repeat="i in [0,1,2]">
-                    <td class="col-sm-3" ng-repeat="type in fanItemTypes" ng-show="$index<4*(i+1) && $index >=4*i">
-                        <button class="btn-lg btn-block" ng-click="changeFanItem(type.id, 1); count = count+1" ng-init="count=0">{{type.label}} [{{count}}]</button>
+                <tr ng-repeat="i in [0,1]">
+                    <td class="col-sm-2" ng-repeat="type in fanItemTypes" ng-show="$index<7*(i+1) && $index >=4*i">
+                        <button class="btn-lg btn-block"
+                                ng-click="changeFanItem(type.id, 1); count = count+1"
+                                ng-init="count=0"
+                                ng-class="count>0? 'clicked':''">
+                            {{type.label}} [{{count}}]</button>
                     </td>
                 </tr>
             </table>
@@ -28,7 +33,9 @@
         <table class="table">
             <tr>
                 <td class="col-sm-2" ng-repeat="winType in winTypes track by $index">
-                    <input type="button" class="btn-lg btn-block" value="{{winType.label}}" ng-click="changeWinType(winType)"/>
+                    <input type="button" class="btn-lg btn-block" value="{{winType.label}}"
+                           ng-click="changeWinType(winType)"
+                           ng-class="winType.id==reqDto.win? 'clicked':''"/>
                 </td>
             </tr>
         </table>
