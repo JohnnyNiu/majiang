@@ -5,7 +5,6 @@ angular.module("jifanCalc", [])
         _init_scope_from_schema($http, $scope);
 
         /**
-         *
          * @param fanItemId
          * @param chnage
          */
@@ -53,7 +52,6 @@ function _init_scope_from_schema($http, $scope) {
         $scope.winTypes = data["winTypes"];
         //todo:    =["闷点", "闷庄", "闷","闷", "闷"];
         $scope.menItems = data["menItems"];
-        console.log($scope);
     });
 }
 

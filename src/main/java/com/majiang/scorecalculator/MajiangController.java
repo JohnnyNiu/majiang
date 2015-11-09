@@ -33,7 +33,13 @@ public class MajiangController {
     @RequestMapping(value = "/jifan",
             method = GET)
     public String jifan() {
-        return "jifanPage";
+        return "jifan/jifanPage";
+    }
+
+    @RequestMapping(value = "/test",
+            method = GET)
+    public String test() {
+        return "view1/view1";
     }
 
     @RequestMapping(value = "/api/jifan/schema", method = GET)

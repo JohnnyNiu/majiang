@@ -3,13 +3,13 @@
 <head>
     <title>赢钱</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link  rel="stylesheet"href="/ui/app/app.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script src="jifanCalc.js"></script>
+    <script src="/ui/app/jifan/jifanCalc.js"></script>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     <div class="row">
             <table class="table">
                 <tr ng-repeat="i in [0,1]">
-                    <td class="col-sm-2" ng-repeat="type in fanItemTypes" ng-show="$index<7*(i+1) && $index >=4*i">
+                    <td class="col-sm-1" ng-repeat="type in fanItemTypes" ng-show="$index<7*(i+1) && $index >=7*i">
                         <button class="btn-lg btn-block"
                                 ng-click="changeFanItem(type.id, 1); count = count+1"
                                 ng-init="count=0"
