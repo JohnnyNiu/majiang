@@ -32,12 +32,6 @@ public class MajiangController {
         return new PaymentDto(calculator.getPaymentDetail()) ;
     }
 
-    @RequestMapping(value = "/jifan",
-            method = GET)
-    public String jifan() {
-        return "jifan/jifanPage";
-    }
-
     @RequestMapping(value = "/test",
             method = GET)
     public String test() {
