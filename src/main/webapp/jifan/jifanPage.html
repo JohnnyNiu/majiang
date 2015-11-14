@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="jifanCalc">
+<html lang="en" ng-app="jifanCalc" ng-controller="jifanCalcCtrl">
 <head>
     <title>赢钱</title>
     <meta charset="utf-8">
@@ -13,46 +13,57 @@
 </head>
 <body>
 
-<div class="container" ng-controller="jifanCalcCtrl">
-    <h1>算番</h1>
-    <div class="row">
-            <table class="table">
-                <tr ng-repeat="i in [0,1]">
-                    <td class="col-sm-1" ng-repeat="type in fanItemTypes" ng-show="$index<7*(i+1) && $index >=7*i">
-                        <button class="btn-lg btn-block"
-                                ng-click="changeFanItem(type.id, 1); count = count+1"
-                                ng-init="count=0"
-                                ng-class="count>0? 'clicked':''">
-                            {{type.label}} [{{count}}]</button>
-                    </td>
-                </tr>
-            </table>
-        <hr>
-
-        <h1>和牌</h1>
+<div class="container">
+    <div class="row fanItems" ng-class="uiData.errors.fanItems.length != 0? 'invalid':''">
+        <h1>算番</h1>
+        <div ng-show="uiData.errors.fanItems.length != 0" class="invalid">{{uiData.errors.fanItems}}</div>
         <table class="table">
-            <tr>
-                <td class="col-sm-2" ng-repeat="winType in winTypes track by $index">
-                    <input type="button" class="btn-lg btn-block" value="{{winType.label}}"
-                           ng-click="changeWinType(winType)"
-                           ng-class="winType.id==reqDto.win? 'clicked':''"/>
+            <tr ">
+                <td class="col-sm-1" ng-repeat="item in uiData.fanItems">
+                    <button class="btn-lg btn-block"
+                            ng-click="changeFanItem(item.id, 1)"
+                            ng-class="item.count>0? 'clicked':''">
+                        {{item.label}} [{{item.count}}]</button>
                 </td>
             </tr>
         </table>
+    </div>
 
-        <h1>闷</h1>
+    <div class="row" ng-class="uiData.errors.win.length != 0? 'invalid':''">
+        <h1>和牌</h1>
+        <div ng-show="uiData.errors.win.length != 0" class="invalid">{{uiData.errors.win}}</div>
         <table class="table">
             <tr>
-                <td class="col-sm-2" ng-repeat="item in menItems track by $index" ><input type="button" class="btn-lg btn-block" value="{{item.label}}" /></td>
+                <td class="col-sm-2" ng-repeat="winType in uiData.winTypes track by $index">
+                    <input type="button" class="btn-lg btn-block" value="{{winType.label}}"
+                           ng-click="changeWinType(winType.id)"
+                           ng-class="winType.clicked? 'clicked':''"/>
+                </td>
             </tr>
         </table>
+    </div>
+    <div class="row" ng-class="uiData.errors.menItems.length != 0? 'invalid':''">
+        <h1>闷</h1>
+        <div ng-show="uiData.errors.menItems.length != 0" class="invalid">{{uiData.errors.menItems}}</div>
+        <table class="table">
+            <tr>
+                <td class="col-sm-2" ng-repeat="item in uiData.menItems track by $index" >
+                    <button class="btn-lg btn-block"
+                           ng-click="changeMenItem(item.index); isClicked=true"
+                           ng-class="item.clicked? 'clicked':''">
+                        {{item.label}}</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-        <input type="button" class="btn-lg btn-primary" value="计算" ng-click="submit()"/>
-        <input type="button" class="btn-lg btn-primary" value="清零" ng-click="reset()"/>
+    <input type="button" class="btn-lg btn-primary" value="计算" ng-click="submit()"/>
+    <input type="button" class="btn-lg btn-primary" value="清零" ng-click="reset()"/>
 
+    <div ng-show="clacResult.payments!= undefined" class="result">
         <h1>计算结果</h1>
-        <p>三家各拿： <span>{{result.payments[0]}}</span>, <span>{{result.payments[1]}}</span>, <span>{{result.payments[2]}}</span></p>
-        <p>总共： <span>{{result.totalPayment}}</span></p>
+        <p>三家各拿： <span>{{clacResult.payments[0]}}</span>, <span>{{clacResult.payments[1]}}</span>, <span>{{clacResult.payments[2]}}</span></p>
+        <p>总共： <span>{{clacResult.totalPayment}}</span></p>
     </div>
 </div>
 

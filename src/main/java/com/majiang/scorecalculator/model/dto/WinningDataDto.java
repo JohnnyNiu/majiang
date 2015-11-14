@@ -1,7 +1,7 @@
 package com.majiang.scorecalculator.model.dto;
 
 import com.majiang.scorecalculator.model.FanItem;
-import com.majiang.scorecalculator.model.MenItems;
+import com.majiang.scorecalculator.model.MenItem;
 import com.majiang.scorecalculator.model.WinType;
 
 import java.util.List;
@@ -12,12 +12,12 @@ import java.util.List;
 public class WinningDataDto {
     private List<FanItem> fanItems;
     private WinType win;
-    private MenItems menItems;
+    private List<MenItem> menItems;
 
     public WinningDataDto() {
     }
 
-    public WinningDataDto(List<FanItem> fanItems, WinType win, MenItems menItems) {
+    public WinningDataDto(List<FanItem> fanItems, WinType win, List<MenItem> menItems) {
         this.fanItems = fanItems;
         this.win = win;
         this.menItems = menItems;
@@ -39,11 +39,11 @@ public class WinningDataDto {
         this.win = win;
     }
 
-    public MenItems getMenItems() {
+    public List<MenItem> getMenItems() {
         return menItems;
     }
 
-    public void setMenItems(MenItems menItems) {
+    public void setMenItems(List<MenItem> menItems) {
         this.menItems = menItems;
     }
 }

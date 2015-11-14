@@ -10,7 +10,9 @@ import com.majiang.scorecalculator.service.Calculator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -46,8 +48,12 @@ public class MajiangController {
     public @ResponseBody SchemaDto jifanSchema() {
         SchemaDto schemaDto = new SchemaDto();
         schemaDto.setFanItemTypes(Arrays.asList(FanItemType.values()));
-        schemaDto.setMenItems(Arrays.asList(MenItem.values()));
         schemaDto.setWinTypes(Arrays.asList(WinType.values()));
+        List<MenItem> menItems = new ArrayList<>();
+        Collections.addAll(menItems, MenItem.values());
+        menItems.add(MenItem.MEN_PU_TONG);
+        menItems.add(MenItem.MEN_PU_TONG);
+        schemaDto.setMenItems(menItems);
         return schemaDto;
     }
 }

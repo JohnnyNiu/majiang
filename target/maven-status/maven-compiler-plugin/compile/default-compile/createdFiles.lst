@@ -1,12 +1,8 @@
-com/majiang/scorecalculator/service/Calculator.class
 com/majiang/scorecalculator/model/MenItem.class
-com/majiang/scorecalculator/service/Calculator$1.class
-com/majiang/controller/WechatController.class
-com/majiang/model/WechatRequest.class
 com/majiang/scorecalculator/model/FanItemType.class
-com/majiang/scorecalculator/model/MenItems.class
-com/majiang/scorecalculator/model/WinType.class
-com/majiang/configuration/WebConfig.class
 com/majiang/scorecalculator/model/FanItem.class
-com/majiang/Application.class
 com/majiang/scorecalculator/MajiangController.class
+com/majiang/scorecalculator/service/Calculator.class
+com/majiang/scorecalculator/service/Calculator$1.class
+com/majiang/scorecalculator/model/WinType.class
+com/majiang/Application.class

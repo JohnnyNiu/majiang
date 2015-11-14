@@ -1,4 +1,21 @@
 .clicked {
+  color: yellow;
+  border-color:yellow;
+  background-color: green;
+}
+
+.invalid {
   color: red;
   border-color:red;
+}
+
+.result p {
+  font-size: large;
+}
+
+.fanItems button {
+  min-width: 60px;
+  max-width: 60px;
+  min-height: 150px;
+  max-height: 150px;
 }

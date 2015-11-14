@@ -2,7 +2,6 @@ package com.majiang.scorecalculator.service;
 
 import com.majiang.scorecalculator.model.FanItem;
 import com.majiang.scorecalculator.model.MenItem;
-import com.majiang.scorecalculator.model.MenItems;
 import com.majiang.scorecalculator.model.WinType;
 
 import java.util.ArrayList;
@@ -18,15 +17,15 @@ import static java.lang.Math.*;
 public class Calculator {
     private List<FanItem> fanItems;
     private WinType win;
-    private MenItems menItems;
+    private List<MenItem> menItems;
 
 
     public Calculator() {
         fanItems = new ArrayList<>();
-        menItems = new MenItems();
+        menItems = new ArrayList<>();
     }
 
-    public Calculator(List<FanItem> fanItems, WinType win, MenItems menItems) {
+    public Calculator(List<FanItem> fanItems, WinType win, List<MenItem> menItems) {
         this.fanItems = fanItems;
         this.win = win;
         this.menItems = menItems;
@@ -87,9 +86,9 @@ public class Calculator {
     }
 
     private boolean haveMen(MenItem item) {
-        return menItems.count(item)>0;
+        return menItems.contains(item);
     }
-    private int getMenCount(MenItem item) {
-        return menItems.count(item);
+    private long getMenCount(MenItem item) {
+       return menItems.stream().filter(elem -> item==elem).count();
     }
 }
