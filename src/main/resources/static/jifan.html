@@ -4,66 +4,87 @@
     <title>赢钱</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link  rel="stylesheet"href="/ui/app/app.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="/ui/app/jifan/jifanCalc.js"></script>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <div class="container">
-    <div class="row fanItems" ng-class="uiData.errors.fanItems.length != 0? 'invalid':''">
-        <h1>算番</h1>
-        <div ng-show="uiData.errors.fanItems.length != 0" class="invalid">{{uiData.errors.fanItems}}</div>
-        <table class="table">
-            <tr ">
-                <td class="col-sm-1" ng-repeat="item in uiData.fanItems">
-                    <button class="btn-lg btn-block"
-                            ng-click="changeFanItem(item.id, 1)"
-                            ng-class="item.count>0? 'clicked':''">
-                        {{item.label}} [{{item.count}}]</button>
-                </td>
-            </tr>
-        </table>
+    <div id="fanItems" ng-class="uiData.errors.fanItems.length != 0? 'invalid':''">
+        <h1 class="title" id="suanfan_title" ng-click="fullscreenParentContainer(fanItems)">算番</h1>
+        <div class="table-container" >
+            <div ng-show="uiData.errors.fanItems.length != 0" class="invalid">{{uiData.errors.fanItems}}</div>
+            <table class="table">
+                <tr ng-repeat="row in [0,1]">
+                    <td class="col-sm-1" ng-repeat="item in uiData.fanItems track by $index" ng-if="$index>=row*6 && $index<(row+1)*6">
+                        <button class="btn-lg btn-block"
+                                ng-click="changeFanItem(item.id, 1)"
+                                ng-class="item.count>0? 'clicked':''">
+                            {{item.label}} [{{item.count}}]</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="float_clear"></div>
     </div>
 
-    <div class="row" ng-class="uiData.errors.win.length != 0? 'invalid':''">
-        <h1>和牌</h1>
-        <div ng-show="uiData.errors.win.length != 0" class="invalid">{{uiData.errors.win}}</div>
-        <table class="table">
-            <tr>
-                <td class="col-sm-2" ng-repeat="winType in uiData.winTypes track by $index">
-                    <input type="button" class="btn-lg btn-block" value="{{winType.label}}"
-                           ng-click="changeWinType(winType.id)"
-                           ng-class="winType.clicked? 'clicked':''"/>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="row" ng-class="uiData.errors.menItems.length != 0? 'invalid':''">
-        <h1>闷</h1>
-        <div ng-show="uiData.errors.menItems.length != 0" class="invalid">{{uiData.errors.menItems}}</div>
-        <table class="table">
-            <tr>
-                <td class="col-sm-2" ng-repeat="item in uiData.menItems track by $index" >
-                    <button class="btn-lg btn-block"
-                           ng-click="changeMenItem(item.index); isClicked=true"
-                           ng-class="item.clicked? 'clicked':''">
-                        {{item.label}}</button>
-                </td>
-            </tr>
-        </table>
+    <div id="winItems" ng-class="uiData.errors.win.length != 0? 'invalid':''">
+        <h1 class="title" >和牌</h1>
+        <div class="table-container" >
+            <div ng-show="uiData.errors.win.length != 0" class="invalid">{{uiData.errors.win}}</div>
+            <table class="table">
+                <tr>
+                    <td class="col-sm-2" ng-repeat="winType in uiData.winTypes track by $index">
+                        <button class="btn-lg btn-block"
+                               ng-click="changeWinType(winType.id)"
+                               ng-class="winType.clicked? 'clicked':''"> {{winType.label}} </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="float_clear"></div>
     </div>
 
-    <input type="button" class="btn-lg btn-primary" value="计算" ng-click="submit()"/>
-    <input type="button" class="btn-lg btn-primary" value="清零" ng-click="reset()"/>
+    <div id="menItems" ng-class="uiData.errors.menItems.length != 0? 'invalid':''">
+        <h1 class="title" >闷</h1>
+        <div class="table-container" >
+            <div ng-show="uiData.errors.menItems.length != 0" class="invalid">{{uiData.errors.menItems}}</div>
+            <table class="table">
+                <tr>
+                    <td class="col-sm-2" ng-repeat="item in uiData.menItems track by $index" >
+                        <button class="btn-lg btn-block"
+                               ng-click="changeMenItem(item.index); isClicked=true"
+                               ng-class="item.clicked? 'clicked':''">
+                            {{item.label}}</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="float_clear"></div>
+    </div>
 
-    <div ng-show="clacResult.payments!= undefined" class="result">
-        <h1>计算结果</h1>
-        <p>三家各拿： <span>{{clacResult.payments[0]}}</span>, <span>{{clacResult.payments[1]}}</span>, <span>{{clacResult.payments[2]}}</span></p>
-        <p>总共： <span>{{clacResult.totalPayment}}</span></p>
+    <div id="calculate_buttons">
+        <input type="button" class="btn-lg btn-primary" value="计算" ng-click="submit()"/>
+        <input type="button" class="btn-lg btn-primary" value="清零" ng-click="reset()"/>
+        <div class="float_clear"></div>
+    </div>
+
+    <!--<div ng-show="clacResult.payments!= undefined" id="result">-->
+    <div id="result">
+        <h1 class="title" >计算结果</h1>
+        <div class="table-container">
+            <p>三家各拿： <span>{{clacResult.payments[0]}}</span>, <span>{{clacResult.payments[1]}}</span>, <span>{{clacResult.payments[2]}}</span></p>
+            <p>总共： <span>{{clacResult.totalPayment}}</span></p>
+        </div>
+        <div class="float_clear"></div>
     </div>
 </div>
 

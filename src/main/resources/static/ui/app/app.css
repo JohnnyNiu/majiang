@@ -1,21 +1,70 @@
-.clicked {
+#fanItems button, #winItems button, #menItems button {
+  width: 43px;
+  height: 65px;
+  font-weight: 500;
+  font-size: 9px;
+  background-color: rgba(239, 239, 239, 0.47);
+}
+
+#fanItems button.clicked, #winItems button.clicked, #menItems button.clicked  {
   color: yellow;
   border-color:yellow;
   background-color: green;
 }
 
+@media screen and (max-width: 600px) {
+}
 .invalid {
   color: red;
   border-color:red;
 }
 
-.result p {
+
+.container {
+  max-width:400px;
+  height:120%;
+  margin:0 auto;
+  background-color: black;
+}
+.container {
+  width: 400px;
+}
+
+#result {
+  height: 200px;
+}
+
+#result p {
   font-size: large;
+  color: chartreuse;
+}
+
+
+#calculate_buttons input {
+  font-size: large;
+  width:49%;
+  float:left;
 }
 
 .fanItems button {
-  min-width: 60px;
-  max-width: 60px;
-  min-height: 150px;
-  max-height: 150px;
+  width: 43px;
+  height: 33px;
+}
+
+.title {
+  color: wheat;
+  background-color: slategray;
+  width:10%;
+  float:left;
+  display: none;
+}
+
+.table-container {
+  width: 90%;
+  float:left;
+  padding-top: 35px;
+}
+
+.float_clear {
+  clear:both;
 }
